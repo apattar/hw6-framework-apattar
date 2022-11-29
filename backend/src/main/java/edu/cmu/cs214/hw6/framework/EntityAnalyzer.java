@@ -11,6 +11,17 @@ import java.util.Properties;
 import com.google.gson.Gson;
 
 public class EntityAnalyzer {
+    private StanfordCoreNLP pipeline;
+
+    /**
+     * Constructor for EntityAnalyzer objects
+     */
+    public EntityAnalyzer() {
+        // set up coreNLP pipeline for analyzing text
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
+        pipeline = new StanfordCoreNLP(props);
+    }
 
     /**
      * Returns a string of JSON describing the entities in a String.
@@ -21,9 +32,6 @@ public class EntityAnalyzer {
      */
     public String getEntitiesJSON(String text) {
         // use coreNLP library to find entities in text
-        Properties props = new Properties();
-        props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
-        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
         CoreDocument doc = new CoreDocument(text);
         pipeline.annotate(doc);
 
