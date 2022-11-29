@@ -42,11 +42,17 @@ public class App extends NanoHTTPD {
         System.out.println("\nBackend server running at http://localhost:8080/ \n");
     }
 
+    private Response logAndGetResponse(String responseText) {
+        System.out.println("Sending response: " + responseText + "\n\n");
+        return newFixedLengthResponse(responseText);
+    }
+
     @Override
     public Response serve(IHTTPSession session) {
         String uri = session.getUri();
         Map<String, String> params = session.getParms();
 
+        System.out.println("Received request: " + uri + "\t" + params.toString());
         // TODO error handling for invalid params
 
         if (uri.equals("/get-plugins")) {
@@ -56,7 +62,7 @@ public class App extends NanoHTTPD {
                 .map((DataPlugin plugin) -> plugin.getPluginName())
                 .collect(Collectors.toList());
 
-            return newFixedLengthResponse(gson.toJson(names));
+            return logAndGetResponse(gson.toJson(names));
 
         } else if (uri.equals("/get-plugin-options")){
             // e.g., /get-plugin-options?plugin=0
@@ -64,7 +70,7 @@ public class App extends NanoHTTPD {
             int pluginId = Integer.parseInt(params.get("plugin"));
             List<String> messages = dataPlugins.get(pluginId).getParameterMessages();
             
-            return newFixedLengthResponse(gson.toJson(messages));
+            return logAndGetResponse(gson.toJson(messages));
 
         } else if (uri.equals("/plugin-options-valid")){
             // e.g., /plugin-options-valid?plugin=0&p0=sometext&p1=sometext...
@@ -76,7 +82,7 @@ public class App extends NanoHTTPD {
             }
 
             String msg = dataPlugins.get(pluginId).getInvalidMessage(pluginParameters);
-            return newFixedLengthResponse((msg == null) ? "valid" : msg);
+            return logAndGetResponse((msg == null) ? "valid" : msg);
 
         } else if (uri.equals("/analyze")){
             // e.g., /analyze?plugin=0?p0=sometext&p1=...
@@ -89,9 +95,10 @@ public class App extends NanoHTTPD {
             }
             String text = dataPlugins.get(pluginId).getText(pluginParameters);
 
-            return newFixedLengthResponse(analyzer.getEntitiesJSON(text));
+            return logAndGetResponse(analyzer.getEntitiesJSON(text));
         }
-        return newFixedLengthResponse("404");
+
+        return logAndGetResponse("404");
     }
 
     /**
