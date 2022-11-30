@@ -64,19 +64,21 @@ class ColorizeVisualizationPlugin implements VisualizationPlugin {
         resultNode.appendChild(header);
         resultNode.appendChild(document.createElement("br"));
 
+        let colorizedText = document.createElement("pre");
         let offset = 0;
         ops.forEach((op: Op) => {
-            resultNode.appendChild(document.createTextNode(text.slice(0, op.location - offset)))
+            colorizedText.appendChild(document.createTextNode(text.slice(0, op.location - offset)))
             let mentionText = text.slice(op.location - offset, op.location + op.len - offset);
             text = text.slice(op.location + op.len - offset);
             offset += op.location + op.len - offset
             let colored = document.createElement("strong");
             colored.innerHTML = mentionText
             colored.style.color = op.color;
-            resultNode.appendChild(colored);
+            colorizedText.appendChild(colored);
         })
-        resultNode.appendChild(document.createTextNode(text));
+        colorizedText.appendChild(document.createTextNode(text));
 
+        resultNode.appendChild(colorizedText);
         return resultNode;
     }
 }
