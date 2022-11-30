@@ -37,6 +37,7 @@ async function renderDataPlugins() {
 
 async function renderDataPluginOptions(pluginId: number) {
     removeAllChildren(dataPluginsOptions);
+    dataOptionInputs = [];
     const response = await fetch("get-plugin-options?plugin=" + pluginId);
     const optionNames = await response.json();
 
@@ -69,6 +70,7 @@ function renderVisualizationPlugins() {
 
 function renderVisualizationPluginOptions(optionNames: string[]) {
     removeAllChildren(visualizationPluginsOptions);
+    visualizationOptionInputs = [];
     optionNames.forEach((optionName) => {
         const label = document.createElement("label");
         label.innerHTML = optionName + "\t"
