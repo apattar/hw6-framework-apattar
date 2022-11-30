@@ -7,15 +7,30 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <!-- <meta name="theme-color" content="#000000" /> -->
-    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
-    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
-    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
-
     <title>Entity Analysis Framework</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    
+    <section id="plugin-select">
+      <h1>Plugin Select</h1>
+      <div class="plugin-select-container">
+        <h2>Data Plugins:</h2>
+        <div id="data-plugins-list"></div>
+        <h2>Options:</h2>
+        <div id="data-plugins-options"></div>
+      </div>
+      <div class="plugin-select-container">
+        <h2>Visualization Plugins:</h2>
+        <div id="visualization-plugins-list"></div>
+        <h2>Options:</h2>
+        <div id="visualization-plugins-options"></div>
+      </div>
+    </section>
+
+    <p id="error-message"></p>
+    <button id="go">Generate Output</button>
+
+    <section id="output"></section>
   </body>
 </html>
