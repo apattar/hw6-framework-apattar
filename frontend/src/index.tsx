@@ -45,10 +45,12 @@ document.getElementById("go")!.onclick = async function() {
   }
 
   // if everything is valid, create and display output
+  const textResponse = await fetch("/text?plugin=" + dataPluginId + "&" + dataParameterString);
+  const text = await textResponse.json();
   const analysisResponse = await fetch("/analyze?plugin=" + dataPluginId + "&" + dataParameterString);
   const analysis = await analysisResponse.json();
   while (output.firstChild !== null) output.removeChild(output.firstChild);
   output.appendChild(
-    currVisualizationPlugin.getChartNode(analysis, visualizationParameters)
+    currVisualizationPlugin.getChartNode(text, analysis, visualizationParameters)
   )
 }

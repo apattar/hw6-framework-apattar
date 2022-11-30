@@ -1,8 +1,10 @@
 
-import TestVisualizationPlugin from './testvisualizationplugin'
+import ColorizeVisualizationPlugin from './colorizeplugin'
+import WordCloudVisualizationPlugin from './wordcloudplugin'
 
 const plugins = [
-    new TestVisualizationPlugin(),
+    new ColorizeVisualizationPlugin(),
+    new WordCloudVisualizationPlugin(),
 ]
 
 export default plugins
