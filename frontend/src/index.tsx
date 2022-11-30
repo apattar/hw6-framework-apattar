@@ -6,8 +6,10 @@ renderPluginGui()
 
 const errorMsg = document.getElementById("error-message")!;
 const output = document.getElementById("output")!;
+const loading = document.getElementById("loading")!;
 
 document.getElementById("go")!.onclick = async function() {
+  loading.classList.remove("hidden");
   errorMsg.innerHTML = "";
 
   // make sure plugins are chosen
@@ -16,12 +18,14 @@ document.getElementById("go")!.onclick = async function() {
     Array.from(document.getElementsByClassName("visualization-active"));
   if (dataActive.length != 1 || visualizationActive.length != 1) {
     errorMsg.innerHTML = "Please choose both a data plugin and a visualization plugin.";
+    loading.classList.add("hidden");
     return;
   }
 
   // check validity of parameters
   if ((dataOptionInputs.concat(visualizationOptionInputs)).some((input) => input.value.length === 0)) {
     errorMsg.innerHTML = "Please enter a value for all parameters."
+    loading.classList.add("hidden");
     return;
   }
 
@@ -33,6 +37,7 @@ document.getElementById("go")!.onclick = async function() {
   const json = await response.json();
   if (json !== "valid") {
     errorMsg.innerHTML = "Data plugin parameters invalid: " + json;
+    loading.classList.add("hidden");
     return;
   }
   const visualizationPluginId = (visualizationActive[0] as HTMLElement).dataset.id;
@@ -41,6 +46,7 @@ document.getElementById("go")!.onclick = async function() {
   const visErrorMsg = currVisualizationPlugin.getInvalidMessage(visualizationParameters);
   if (visErrorMsg !== null) {
     errorMsg.innerHTML = "Visualization plugin parameters invalid: " + visErrorMsg;
+    loading.classList.add("hidden");
     return;
   }
 
@@ -53,4 +59,6 @@ document.getElementById("go")!.onclick = async function() {
   output.appendChild(
     currVisualizationPlugin.getChartNode(text, analysis, visualizationParameters)
   )
+  
+  loading.classList.add("hidden");
 }
