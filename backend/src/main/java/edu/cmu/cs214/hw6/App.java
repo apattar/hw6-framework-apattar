@@ -53,8 +53,6 @@ public class App extends NanoHTTPD {
         Map<String, String> params = session.getParms();
 
         System.out.println("Received request: " + uri + "\t" + params.toString());
-        // TODO error handling for invalid params
-
         if (uri.equals("/get-plugins")) {
             // e.g., /get-plugins
 
@@ -86,7 +84,7 @@ public class App extends NanoHTTPD {
 
         } else if (uri.equals("/text")){
             // e.g., /text?plugin=0?p0=sometext&p1=...
-            // parameters should be valid, otherwise throw exception
+            // parameters should be valid
 
             int pluginId = Integer.parseInt(params.get("plugin"));
             List<String> pluginParameters = new ArrayList<>();
@@ -98,7 +96,7 @@ public class App extends NanoHTTPD {
             return logAndGetResponse(gson.toJson(text));
         } else if (uri.equals("/analyze")){
             // e.g., /analyze?plugin=0?p0=sometext&p1=...
-            // parameters should be valid, otherwise throw exception
+            // parameters should be valid
 
             int pluginId = Integer.parseInt(params.get("plugin"));
             List<String> pluginParameters = new ArrayList<>();

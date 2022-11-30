@@ -8,7 +8,7 @@ public interface DataPlugin {
      * Gets the name of this data plugin.
      * @return this data plugin's name
      */
-    public String getPluginName();
+    String getPluginName();
 
     /**
      * Returns a list of names of parameters for this plugin.
@@ -19,7 +19,7 @@ public interface DataPlugin {
      * 
      * @return list of parameter names for this plugin
      */
-    public List<String> getParameterMessages();
+    List<String> getParameterMessages();
 
     /**
      * Returns null if given parameter values are valid, or a message to show user otherwise.
@@ -29,7 +29,7 @@ public interface DataPlugin {
      * @param parameters the parameter values to be judged
      * @return null if parameters are valid, a message to show user otherwise
      */
-    public String getInvalidMessage(List<String> parameters);
+    String getInvalidMessage(List<String> parameters);
 
     /**
      * Given a set of valid parameters, returns text to analyze.
@@ -38,6 +38,6 @@ public interface DataPlugin {
      * @param parameters the valid parameters to use
      * @return the text that the framework will analyze
      */
-    public String getText(List<String> parameters);
+    String getText(List<String> parameters);
 
 }

@@ -1,6 +1,8 @@
 package edu.cmu.cs214.hw6.framework;
 
-import edu.stanford.nlp.pipeline.*;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.pipeline.CoreDocument;
+import edu.stanford.nlp.pipeline.CoreEntityMention;
 
 import java.util.HashMap;
 import java.util.List;
