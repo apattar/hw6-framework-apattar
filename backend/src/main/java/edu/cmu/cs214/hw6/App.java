@@ -84,6 +84,18 @@ public class App extends NanoHTTPD {
             String msg = dataPlugins.get(pluginId).getInvalidMessage(pluginParameters);
             return logAndGetResponse(gson.toJson((msg == null) ? "valid" : msg));
 
+        } else if (uri.equals("/text")){
+            // e.g., /text?plugin=0?p0=sometext&p1=...
+            // parameters should be valid, otherwise throw exception
+
+            int pluginId = Integer.parseInt(params.get("plugin"));
+            List<String> pluginParameters = new ArrayList<>();
+            for (int i = 0; i < params.size() - 1; i++) {
+                pluginParameters.add(params.get("p" + Integer.toString(i)));
+            }
+            String text = dataPlugins.get(pluginId).getText(pluginParameters);
+
+            return logAndGetResponse(gson.toJson(text));
         } else if (uri.equals("/analyze")){
             // e.g., /analyze?plugin=0?p0=sometext&p1=...
             // parameters should be valid, otherwise throw exception

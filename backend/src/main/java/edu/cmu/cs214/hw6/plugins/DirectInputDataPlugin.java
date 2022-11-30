@@ -6,7 +6,7 @@ import edu.cmu.cs214.hw6.framework.DataPlugin;
 public class DirectInputDataPlugin implements DataPlugin {
 
     public String getPluginName() {
-        return "Direct Input Data Plugin";
+        return "Direct Input Plugin";
     }
 
     public List<String> getParameterMessages() {
