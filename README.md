@@ -11,6 +11,7 @@ Wait until you see the message "Backend server running at http://localhost:8080/
 
 Then, in another terminal instance, `cd` into the `frontend` directory, and run:
 ```
+npm install
 npm run start
 ```
 This will run the frontend server at http://localhost:3000. It should automatically open in a browser.
