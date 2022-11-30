@@ -14,6 +14,7 @@ h2 {
 button {
   font-size: medium;
   padding: 0.5rem;
+  margin-right: 0.5rem;
 }
 #go {
   font-size: large;
