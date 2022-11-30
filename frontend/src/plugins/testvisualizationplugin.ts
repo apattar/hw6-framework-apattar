@@ -12,6 +12,7 @@ class TestVisualizationPlugin implements VisualizationPlugin {
         return "Test Visualization Plugin"
     }
     getChartNode(data: any, params: string[]): Node {
+        console.log(data);
         return document.createTextNode("" + data);
     }
 }

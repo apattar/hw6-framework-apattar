@@ -1,3 +1,58 @@
 body {
   box-sizing: border-box;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: x-large;
+}
+h2 {
+  font-size: larger;
+}
+
+button {
+  font-size: medium;
+  padding: 0.5rem;
+}
+#go {
+  font-size: large;
+  font-weight:bold;
+}
+
+#error-message {
+  color: darkred;
+}
+
+#output {
+  margin-top: 1rem;
+}
+
+.plugin-select-container {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+}
+.plugin-select-container div {
+  padding: 0.5rem;
+  border: 2px solid grey;
+  border-radius: 0.5rem;
+}
+
+#data-plugins-list, #visualization-plugins-list {
+  background-color:rgb(225, 225, 225);
+  margin-bottom: 1rem;
+}
+
+#data-plugins-options, #visualization-plugins-options {
+  background-color: rgb(245, 245, 245);
+}
+
+.data-active {
+  border-color: darkred;
+}
+.visualization-active {
+  border-color: darkred;
 }

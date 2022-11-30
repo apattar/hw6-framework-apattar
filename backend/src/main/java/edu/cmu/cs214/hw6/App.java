@@ -82,7 +82,7 @@ public class App extends NanoHTTPD {
             }
 
             String msg = dataPlugins.get(pluginId).getInvalidMessage(pluginParameters);
-            return logAndGetResponse((msg == null) ? "valid" : msg);
+            return logAndGetResponse(gson.toJson((msg == null) ? "valid" : msg));
 
         } else if (uri.equals("/analyze")){
             // e.g., /analyze?plugin=0?p0=sometext&p1=...
